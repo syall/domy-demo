@@ -2,12 +2,19 @@
 # yarn lockfile v1
 
 
+domy-lang@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/domy-lang/-/domy-lang-1.0.0.tgz#86aa3dee27f2d03519c2391166a68dfa2515f5ca"
+  integrity sha512-VI2Uhgv2Xf40KEDC1ygMkPckcFcgj5/ipnTksYeyzh+tDTJjT5VHA58GrY9CSr+TikN+aTXyicsQ+h82HMgzuQ==
+  dependencies:
+    readline-sync "^1.4.10"
+
 monaco-editor@^0.19.0:
   version "0.19.0"
   resolved "https://registry.yarnpkg.com/monaco-editor/-/monaco-editor-0.19.0.tgz#c6e774210f3b292ff739e96f45a1cc78bf5ac2e7"
   integrity sha512-ida++HI/s9V8ma8yYS9CAS0UJEFwW1gbt9G6oviEdv/aHhFd/kV3sXrINqC63TVdKzOZdKjPRRCOPJJ80zvLbw==
 
-xterm@^4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/xterm/-/xterm-4.3.0.tgz#9a302efefe75172d4f7ea3afc20f9bd983f05027"
-  integrity sha512-6dnrC4nxgnRKQzIWwC5HA0mnT9/rpDPZflUIr24gdcdSMTKM1QQcor4qQ/xz4Zerz6AIL/CuuBPypFfzsB63dQ==
+readline-sync@^1.4.10:
+  version "1.4.10"
+  resolved "https://registry.yarnpkg.com/readline-sync/-/readline-sync-1.4.10.tgz#41df7fbb4b6312d673011594145705bf56d8873b"
+  integrity sha512-gNva8/6UAe8QYepIQH/jQ2qn91Qj0B9sYjMBBs3QOB8F2CXcKgLxQaJRP76sWVRQt+QU+8fAkCbCvjjMFu7Ycw==

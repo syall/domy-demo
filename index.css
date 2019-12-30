@@ -1,18 +1,69 @@
+:root {
+    --editor-width: 550px;
+    --header-height: 2vh;
+    --total-height: 90vh;
+    --total-width: 100%;
+}
+
 html,
-body,
-#content {
-    height: 100%;
+body {
+    height: 100vh;
     width: 100vw;
+    min-width: 1000px;
     margin: 0;
 }
 
+.title {
+    height: 2vh;
+    width: var(--total-width);
+    text-align: center;
+}
+
 #content {
+    height: var(--total-height);
+    width: var(--total-width);
     display: flex;
+    border: 1px solid black;
+}
+
+header {
+    height: var(--header-height);
+    width: var(--total-width);
+    display: flex;
+    align-items: center;
 }
 
 #container {
     height: 100%;
-    width: 550px;
-    border: 1px solid black;
+    width: var(--editor-width);
     overflow: hidden;
+    border-right: 1px solid black;
+}
+
+pre {
+    overflow: scroll;
+    padding: 5px;
+    width: calc(var(--total-width) - var(--editor-width) - 10px);
+}
+
+.run {
+    border: none;
+    width: var(--editor-width);
+    text-align: center;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.out {
+    margin-left: calc((100% - var(--editor-width)) / 2);
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+}
+
+.link {
+    height: 4vh;
+    padding: 0.5vh 20px;
 }
