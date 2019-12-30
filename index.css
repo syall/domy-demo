@@ -1,0 +1,18 @@
+html,
+body,
+#content {
+    height: 100%;
+    width: 100vw;
+    margin: 0;
+}
+
+#content {
+    display: flex;
+}
+
+#container {
+    height: 100%;
+    width: 550px;
+    border: 1px solid black;
+    overflow: hidden;
+}

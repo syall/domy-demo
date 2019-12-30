@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" data-name="vs/editor/editor.main"
+        href="./node_modules/monaco-editor/min/vs/editor/editor.main.css">
+    <title>Domy Demo</title>
+</head>
+
+<body>
+    <div id="content">
+        <div id="container"></div>
+        <div id="terminal">Terminal</div>
+    </div>
+    <script>var require = { paths: {
+        'vs': './node_modules/monaco-editor/min/vs',
+        'term': './node_modules/xterm/lib'
+    } };</script>
+    <script src="./node_modules/monaco-editor/min/vs/loader.js"></script>
+    <script src="./node_modules/monaco-editor/min/vs/editor/editor.main.nls.js"></script>
+    <script src="./node_modules/monaco-editor/min/vs/editor/editor.main.js"></script>
+
+    <script>
+
+        monaco.languages.register({ id: 'domy' });
+
+        monaco.languages.setMonarchTokensProvider('domy', {
+            keywords: [
+                'continue', 'do', 'break', 'return',
+                'while', 'true', 'false', 'my'
+            ],
+            operators: [
+                '=', '!', '&', '|', '^',
+                '?', ':', '==', '!=',
+            ],
+            symbols: /[=<!?:&|\^]+/,
+            tokenizer: {
+                root: [
+                    [/[a-z][a-z_A-Z0-9$]*[\w$]*/, {
+                        cases: {
+                            '@keywords': 'keyword',
+                            '@default': 'identifier'
+                        }
+                    }],
+                    { include: '@whitespace' },
+                    [/[{}()]/, '@brackets'],
+                    [/@symbols/, {
+                        cases: {
+                            '@operators': 'operator',
+                            '@default': ''
+                        }
+                    }],
+                    [/[;,]/, 'delimiter']
+                ],
+                whitespace: [
+                    [/[ \t\r\n]+/, 'white'],
+                    [/#.*$/, 'comment'],
+                ],
+            },
+        });
+
+        monaco.editor.defineTheme('domyTheme', {
+            base: 'vs',
+            inherit: true,
+            rules: [
+                { token: 'operator', foreground: '606060' },
+            ]
+        });
+
+        var editor = monaco.editor.create(document.getElementById('container'), {
+            value: [
+                '# Welcome to Domy!',
+                'my stat = do(arg1, arg2) {',
+                '\treturn arg1 & arg2;',
+                '}',
+                'print(stat);',
+                'print(stat(true, true));',
+                'stat = false;',
+                'my fn = while stat = !stat {',
+                '\tstat & print(stat) & continue;',
+                '\t!stat & break;',
+                '}'
+            ].join('\n'),
+            theme: 'domyTheme',
+            language: 'domy'
+        });
+
+    </script>
+</body>
+
+</html>
