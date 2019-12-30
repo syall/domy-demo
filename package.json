@@ -1,0 +1,9 @@
+{
+  "name": "domy-demo",
+  "version": "1.0.0",
+  "description": "Demo for domy-lang",
+  "main": "demo.js",
+  "repository": "https://github.com/syall/domy-demo",
+  "author": "Steven Yuan (syall)",
+  "license": "MIT"
+}
