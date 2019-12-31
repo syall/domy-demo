@@ -1,3 +1,4 @@
+import * as monaco from './node_modules/monaco-editor/esm/vs/editor/editor.main.js';
 
 monaco.languages.register({ id: 'domy' });
 
@@ -44,7 +45,7 @@ monaco.editor.defineTheme('domyTheme', {
     ]
 });
 
-var editor = monaco.editor.create(document.getElementById('container'), {
+window.editor = monaco.editor.create(document.getElementById('container'), {
     value: [
         '# Welcome to Domy!',
         'my stat = do(arg1, arg2) {',

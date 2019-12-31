@@ -1,10 +1,9 @@
-import DomyLexer from './node_modules/domy-lang/bin/lexer.js';
-import DomyParser from './node_modules/domy-lang/bin/parser.js';
-import DomyInterpreter from './node_modules/domy-lang/bin/interpreter.js';
-import { tokenTypes } from './node_modules/domy-lang/bin/utils.js';
+import DomyLexer from '/node_modules/domy-lang/bin/lexer.js';
+import DomyParser from '/node_modules/domy-lang/bin/parser.js';
+import DomyInterpreter from '/node_modules/domy-lang/bin/interpreter.js';
+import { tokenTypes } from '/node_modules/domy-lang/bin/utils.js';
 
-window.runCode = runCode;
-export function runCode() {
+window.runCode = function runCode() {
 
     // Code
     const text = editor.getValue();
