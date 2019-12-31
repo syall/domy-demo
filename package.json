@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "parcel serve index.html --open",
-    "prod": "parcel build index.html --public-url /domy-demo/",
+    "prod": "parcel build index.html",
     "predeploy": "yarn prod",
     "deploy": "gh-pages -d dist"
   },
