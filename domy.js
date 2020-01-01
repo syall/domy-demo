@@ -5,44 +5,54 @@ import { tokenTypes } from '/node_modules/domy-lang/bin/utils.js';
 
 window.runCode = function runCode() {
 
-    // Code
-    const text = editor.getValue();
+    try {
 
-    // Lexer
-    const lexer = new DomyLexer();
-    lexer.tokenize(text);
+        // Code
+        const text = editor.getValue();
 
-    // Parser
-    const parser = new DomyParser();
-    parser.parse(lexer.record.pop(), text);
+        // Lexer
+        const lexer = new DomyLexer();
+        lexer.tokenize(text);
 
-    // Output
-    const replace = document.createElement('code');
-    replace.id = 'terminal';
-    document.getElementById('terminal').replaceWith(replace);
+        // Parser
+        const parser = new DomyParser();
+        parser.parse(lexer.record.pop(), text);
 
-    // Interpreter
-    const runner = new DomyInterpreter();
-    runner.global.reassign('print', {
-        type: tokenTypes.std,
-        args: ['toPrint'],
-        value: arg => {
-            const out = JSON.stringify(
-                arg.type === tokenTypes.func
-                    ? arg
-                    : arg.value,
-                [
-                    'name', 'text', 'type', 'args',
-                    'value', 'cond', 'left', 'right'
-                ],
-                2
-            );
-            const node = document.createElement('div');
-            node.innerHTML = out;
-            replace.appendChild(node);
-            return { value: true };
-        }
-    });
-    runner.run(parser.record.pop());
+        // Output
+        const replace = document.createElement('code');
+        replace.id = 'terminal';
+        document.getElementById('terminal').replaceWith(replace);
 
-}
+        // Interpreter
+        const runner = new DomyInterpreter();
+        runner.global.reassign('print', {
+            type: tokenTypes.std,
+            args: ['toPrint'],
+            value: arg => {
+                const out = JSON.stringify(
+                    arg.type === tokenTypes.func
+                        ? arg
+                        : arg.value,
+                    [
+                        'name', 'text', 'type', 'args',
+                        'value', 'cond', 'left', 'right'
+                    ],
+                    2
+                );
+                const node = document.createElement('div');
+                node.innerHTML = out;
+                replace.appendChild(node);
+                return { value: true };
+            }
+        });
+        runner.run(parser.record.pop());
+
+    } catch (error) {
+        const replace = document.getElementById('terminal');
+        const node = document.createElement('div');
+        node.style = 'color: red;'
+        node.innerHTML = `Error Occurred.`;
+        replace.appendChild(node);
+    }
+
+};
