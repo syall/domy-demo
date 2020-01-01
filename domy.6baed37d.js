@@ -1213,34 +1213,44 @@ var _utils = require("/node_modules/domy-lang/bin/utils.js");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 window.runCode = function runCode() {
-  // Code
-  var text = editor.getValue(); // Lexer
+  try {
+    // Code
+    var text = editor.getValue(); // Lexer
 
-  var lexer = new _lexer.default();
-  lexer.tokenize(text); // Parser
+    var lexer = new _lexer.default();
+    lexer.tokenize(text); // Parser
 
-  var parser = new _parser.default();
-  parser.parse(lexer.record.pop(), text); // Output
+    var parser = new _parser.default();
+    parser.parse(lexer.record.pop(), text); // Output
 
-  var replace = document.createElement('code');
-  replace.id = 'terminal';
-  document.getElementById('terminal').replaceWith(replace); // Interpreter
+    var replace = document.createElement('code');
+    replace.id = 'terminal';
+    document.getElementById('terminal').replaceWith(replace); // Interpreter
 
-  var runner = new _interpreter.default();
-  runner.global.reassign('print', {
-    type: _utils.tokenTypes.std,
-    args: ['toPrint'],
-    value: function value(arg) {
-      var out = JSON.stringify(arg.type === _utils.tokenTypes.func ? arg : arg.value, ['name', 'text', 'type', 'args', 'value', 'cond', 'left', 'right'], 2);
-      var node = document.createElement('div');
-      node.innerHTML = out;
-      replace.appendChild(node);
-      return {
-        value: true
-      };
-    }
-  });
-  runner.run(parser.record.pop());
+    var runner = new _interpreter.default();
+    runner.global.reassign('print', {
+      type: _utils.tokenTypes.std,
+      args: ['toPrint'],
+      value: function value(arg) {
+        var out = JSON.stringify(arg.type === _utils.tokenTypes.func ? arg : arg.value, ['name', 'text', 'type', 'args', 'value', 'cond', 'left', 'right'], 2);
+        var node = document.createElement('div');
+        node.innerHTML = out;
+        replace.appendChild(node);
+        return {
+          value: true
+        };
+      }
+    });
+    runner.run(parser.record.pop());
+  } catch (error) {
+    var _replace = document.getElementById('terminal');
+
+    var node = document.createElement('div');
+    node.style = 'color: red;';
+    node.innerHTML = "Error Occurred.";
+
+    _replace.appendChild(node);
+  }
 };
 },{"/node_modules/domy-lang/bin/lexer.js":"node_modules/domy-lang/bin/lexer.js","/node_modules/domy-lang/bin/parser.js":"node_modules/domy-lang/bin/parser.js","/node_modules/domy-lang/bin/interpreter.js":"node_modules/domy-lang/bin/interpreter.js","/node_modules/domy-lang/bin/utils.js":"node_modules/domy-lang/bin/utils.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -1270,7 +1280,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62088" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50735" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
