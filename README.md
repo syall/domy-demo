@@ -6,7 +6,7 @@
 
 ## Technical Notes
 
-The demo is a simple static html page that uses the [`monaco-editor`](https://github.com/Microsoft/monaco-editor).
+The demo is a simple static HTML page that uses the [`monaco-editor`](https://github.com/Microsoft/monaco-editor).
 
 ### domy.js
 
@@ -16,18 +16,18 @@ However, the `print` function is reassigned to append children nodes in the term
 
 ## monaco.js
 
-To use `monaco-editor`, there is a definition of the domy language, using syntax highlighting for keywords, operators, symbols, etc.
+There is a definition of the domy language (syntax highlighting for keywords, operators, symbols, etc.) registered in the `monaco` object. 
 
-However, it did take a while to find out where exactly to import monaco from the `node_modules/` (`'/node_modules/monaco-editor/esm/vs/editor/editor.main.js'`);
+It took a while to find out where exactly to import `monaco` from (`'/node_modules/monaco-editor/esm/vs/editor/editor.main.js'`);
 
 ### UI
 
-The HTML is simple, having only two containers for the source code and terminal as well as a button for running the code.
+The HTML is simple, having only two containers (source code and terminal) and a button to run the code.
 
 ### Deployment
 
 For the build, [parcel](https://parceljs.org/) was used.
 
-However, I do not know if it was because of how parcel bundles the `node_modules/`, it took at least 50 seconds for each build which is ridiculously long.
+However, parcel's bundling process took at least 50 seconds for each build which is ridiculously long, presumably for `node_modules/`.
 
-Although there was no configuration, the server feature was unusable.
+Although there was no configuration, the server feature was essentially unusable.
